@@ -62,6 +62,7 @@
               type="warning"
               icon="el-icon-setting"
               size="mini"
+              @click="addRoleRight(scope.row)"
             ></el-button>
           </template>
         </el-table-column>
@@ -123,6 +124,29 @@
         <el-button type="primary" @click="submitEditForm">确 定</el-button>
       </span>
     </el-dialog>
+    <!-- 分配角色对话框 -->
+    <el-dialog title="提示" :visible.sync="dialogVisible" width="50%">
+      <div>
+        <p>当前的用户:{{ userInfo.username }}</p>
+        <p>当前的角色:{{ userInfo.role_name }}</p>
+        <p>
+          当前分配新角色:
+          <el-select v-model="selectRoleId" placeholder="请选择">
+            <el-option
+              v-for="item in rolesList"
+              :key="item.id"
+              :label="item.roleName"
+              :value="item.roleDesc"
+            >
+            </el-option>
+          </el-select>
+        </p>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -131,6 +155,10 @@ export default {
   name: "User",
   data() {
     return {
+      userInfo: {},
+      selectRoleId:'',
+      rolesList: [],
+      dialogVisible: "false",
       queryInfo: {
         query: "",
         pagenum: 1,
@@ -258,7 +286,17 @@ export default {
       const { data: res } = await this.$http.delete("users/" + id);
       if (res.meta.status !== 200) return this.$message.error("删除失败");
       this.$message.success("删除成功");
-      this.getUserList()
+      this.getUserList();
+    },
+    //分配角色
+    async addRoleRight(userInfo) {
+      this.userInfo = userInfo;
+      const { data: res } = await this.$http.get("roles");
+      if (res.meta.status !== 200)
+        return this.$message.error("获取角色列表失败");
+      this.rolesList = res.data;
+      console.log(this.rolesList);
+      this.dialogVisible = true;
     },
   },
   created() {
