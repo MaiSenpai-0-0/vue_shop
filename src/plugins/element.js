@@ -28,10 +28,12 @@ import {
   Tree,
   Select,
   Option,
+  Cascader
 } from "element-ui";
 // Vue.use(Message)
 Vue.prototype.$message = Message;
 Vue.prototype.$confirm = MessageBox.confirm;
+Vue.use(Cascader)
 Vue.use(Tree);
 Vue.use(Select);
 Vue.use(Option);
