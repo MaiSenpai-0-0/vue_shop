@@ -30,11 +30,21 @@ import {
   Select,
   Option,
   Cascader,
-  Alert,Tabs,TabPane
+  Alert,
+  Tabs,
+  TabPane,
+  Step,
+  Steps,
+  Checkbox,Upload,
+  CheckboxGroup
+
 } from "element-ui";
 Vue.prototype.$message = Message;
 Vue.prototype.$confirm = MessageBox.confirm;
 const elementList = [
+  Upload,
+  CheckboxGroup,
+  Checkbox,
   TabPane,
   Tabs,
   Form,
@@ -65,6 +75,8 @@ const elementList = [
   Tree,
   Select,
   Option,
+  Step,
+  Steps,
   Cascader,
 ];
 elementList.forEach((item) => {

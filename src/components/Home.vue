@@ -116,4 +116,10 @@ export default {
   text-align: center;
   cursor: pointer;
 }
+.el-cascader-panel {
+  display: flex;
+  border-radius: 4px;
+  font-size: 14px;
+  height: 200px;
+}
 </style>
