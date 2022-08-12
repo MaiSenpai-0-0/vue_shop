@@ -35,13 +35,17 @@ import {
   TabPane,
   Step,
   Steps,
-  Checkbox,Upload,
-  CheckboxGroup
-
+  Checkbox,
+  Upload,
+  CheckboxGroup,
+  Timeline,
+  TimelineItem,
 } from "element-ui";
 Vue.prototype.$message = Message;
 Vue.prototype.$confirm = MessageBox.confirm;
 const elementList = [
+  Timeline,
+  TimelineItem,
   Upload,
   CheckboxGroup,
   Checkbox,
